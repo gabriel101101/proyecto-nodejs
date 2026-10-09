@@ -59,7 +59,7 @@ switch (args[0]) {
     case "GET":
         console.log(args[0]);
 
-        if (args[1]) {
+        if (args[1] && args[1].startsWith("products")){
             const productos = await obtenerProductos(args[1]);
             console.log(productos);
         } else {
@@ -76,7 +76,7 @@ switch (args[0]) {
         args[2] &&
         args[3] &&
         args[4] &&
-        args[1].startsWith("products")
+        args[1] == "products"
         ) {
         const producto = {
             title: args[2],

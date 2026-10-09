@@ -29,9 +29,8 @@ async function crearProducto(producto) {
         );
 
         if (response.ok) {
-            console.log("producto creado");
+            console.log("producto creado :");
         }
-
         const data = await response.json();
         return data;
 
@@ -41,6 +40,7 @@ async function crearProducto(producto) {
 }
 
 switch (args[0]) {
+
     case "GET":
         console.log(args[0]);
 
@@ -53,16 +53,16 @@ switch (args[0]) {
         break;
 
     
-case "POST":
-    console.log(args[0]);
+    case "POST":
+        console.log(args[0]);
 
-    if (
+        if (
         args[1] &&
         args[2] &&
         args[3] &&
         args[4] &&
         args[1].startsWith("products")
-    ) {
+        ) {
         const producto = {
             title: args[2],
             price: Number(args[3]),
@@ -72,12 +72,10 @@ case "POST":
         };
 
         const resultado = await crearProducto(producto);
-
-        console.log("Producto creado:");
         console.log(resultado);
 
-    } else {
+        } else {
         console.log("Comando incompleto");
-    }
-    break;
+        }
+        break;
 }

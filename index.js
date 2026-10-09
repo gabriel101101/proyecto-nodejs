@@ -39,6 +39,21 @@ async function crearProducto(producto) {
     }
 }
 
+
+async function eliminarProducto(producto) {
+    try {
+        const response = await fetch(`https://api.escuelajs.co/api/v1/${producto}`,{
+            method: "DELETE",
+        });
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error:", error.message);
+    }
+}
+
+
 switch (args[0]) {
 
     case "GET":
@@ -74,8 +89,21 @@ switch (args[0]) {
         const resultado = await crearProducto(producto);
         console.log(resultado);
 
-        } else {
-        console.log("Comando incompleto");
+        }else {
+            console.log("comando incompleto o incorrecto");
         }
         break;
-}
+
+    case "DELETE":
+        console.log(args[0]);
+        if(args[1].startsWith("products/") && args[1].length > 9){
+            const response = await eliminarProducto(args[1]);
+            console.log("Producto Eliminado ", response);
+        }else{
+            console.log("comando incompleto o incorrecto");
+        }
+        break;
+
+    default:
+        console.log("Comando Incorrecto");
+}  
